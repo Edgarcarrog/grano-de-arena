@@ -5,7 +5,11 @@ const userSchema = new Schema(
   {
     name: String,
     email: String,
-    photoURL: String
+    photoURL: String,
+    projects: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }]
   },
   {
     timestamps: true,

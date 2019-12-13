@@ -12,6 +12,7 @@ const StyledNavbar = styled.nav`
   justify-content: flex-end;
   padding: 10px;
   box-sizing: border-box;
+  background-color: #0f4c81;
   & a {
     padding: 5px;
     color: black
