@@ -23,7 +23,6 @@ const StyledNavbar = styled.nav`
 `
 
 function Navbar(props) {
-  console.log(props)
   return (
     <MyContext.Consumer>
       {context => {
@@ -44,11 +43,13 @@ function Navbar(props) {
               <span
                 onClick={() =>
                   context.handleLogout(() => {
-                    props.history.push('/login')
+                    props.history.push('/')
                   })
                 }
               >
-                Logout
+                <NavLink exact to="/" activeClassName="navbar-active">
+                  Logout
+                </NavLink>
               </span>
             )}
           </StyledNavbar>

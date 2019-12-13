@@ -24,7 +24,7 @@ class MyProvider extends Component {
       AUTH_SERVICE.getUser()
         .then(({ data }) => {
           this.setState({ loggedUser: true, user: data.user })
-          Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
+          //Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
         })
         .catch(err => console.log(err))
     }
@@ -51,7 +51,7 @@ class MyProvider extends Component {
         cb()
       })
       .catch(err => {
-        Swal.fire(`Quien sabe que paso`, '☠️', 'error')
+        Swal.fire(`Usuario o password incorrectos`, '', 'error')
       })
   }
 

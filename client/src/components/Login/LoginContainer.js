@@ -4,7 +4,6 @@ import { MyContext } from '../../context'
 
 export default class LoginContainer extends React.Component {
   componentDidMount() {
-    console.log(this.context)
     if (this.context.loggedUser) {
       console.log(';lol')
       return this.props.history.push('/profile')
