@@ -19,7 +19,7 @@ const StyledNavbar = styled.nav`
     text-decoration: none;
   }
   & a.navbar-active {
-    color: #0f4c81;
+    color: #c9dd83;
   }
 `
 

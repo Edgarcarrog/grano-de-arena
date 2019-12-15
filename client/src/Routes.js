@@ -5,6 +5,7 @@ import SignupContainer from './components/Signup/SignupContainer'
 import LoginContainer from './components/Login/LoginContainer'
 import Profile from './components/Profile/Profile'
 import Home from './components/Home/Home'
+import CreateProject from './components/CreateProject/CreateProject'
 
 function Routes() {
   return (
@@ -15,6 +16,7 @@ function Routes() {
         <Route exact path="/signup" component={SignupContainer} />
         <Route exact path="/login" component={LoginContainer} />
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/createProject" component={CreateProject} />
       </Switch>
     </BrowserRouter>
   )
