@@ -50,6 +50,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/', require('./routes/index'))
+//const index = require('./routes/index');
+//const projectRoutes = require('./routes/project.Routes');
+
+app.use('/', require('./routes/index') );
+
 
 module.exports = app

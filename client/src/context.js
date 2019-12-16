@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react'
 import AUTH_SERVICE from './services/AuthService'
+import DataService from './services/DataService'
 import Swal from 'sweetalert2'
 
 export const MyContext = createContext()
@@ -16,18 +17,46 @@ class MyProvider extends Component {
       email: '',
       password: ''
     },
-    user: {}
+    projectForm:{
+      title: "",
+      description: "",
+      category: "Campaña Ecológica",
+      authorId: ""
+    },
+    user: {},
+    projects: []
   }
 
   componentDidMount() {
     if (document.cookie) {
       AUTH_SERVICE.getUser()
         .then(({ data }) => {
-          this.setState({ loggedUser: true, user: data.user })
+          this.setState({ 
+            loggedUser: true, 
+            user: data.user,
+            projectForm:{authorId: data.user._id} 
+          })
+          this.viewProjects().then(()=>{
+          //console.log(this.state)
+          })
+            //console.log(this.state.projects)
           //Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
         })
         .catch(err => console.log(err))
     }
+  }
+
+  handleProject = async e => {
+    e.preventDefault()
+    await DataService.createProject(this.state.projectForm)
+    this.setState({ projectForm: { title: "", description: "", category: "Campaña Ecológica"}})
+    Swal.fire('Proyecto creado')
+  }
+
+  viewProjects = async () => {
+    const {data: {projects}} = await DataService.getProject(this.state.user)
+    //console.log(projects)
+    this.setState({...this.state, projects})
   }
 
   handleInput = (e, obj) => {
@@ -35,7 +64,16 @@ class MyProvider extends Component {
     const key = e.target.name
     a[key] = e.target.value
     this.setState({ obj: a })
+    //console.log(this.state.projectForm)
   }
+
+  handleSelect = (e, obj) => {
+    const a = this.state[obj]
+    a["category"] = e
+    this.setState({ obj: a })
+    //console.log(obj)
+  }
+
 
   handleSignup = async e => {
     e.preventDefault()
@@ -63,7 +101,7 @@ class MyProvider extends Component {
   }
 
   render() {
-    console.log(this.state)
+    //console.log(this.state)
     return (
       <MyContext.Provider
         value={{
@@ -74,7 +112,12 @@ class MyProvider extends Component {
           handleSignup: this.handleSignup,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
-          user: this.state.user
+          handleSelect: this.handleSelect,
+          user: this.state.user,
+          handleProject: this.handleProject,
+          projectForm: this.state.projectForm,
+          viewProjects: this.viewProjects,
+          projects: this.state.projects
         }}
       >
         {this.props.children}

@@ -6,25 +6,27 @@ const projectSchema = new Schema(
       type: String,
       required: true
     },
+    description:{
+      type: String,
+      required: true
+    },
     category: {
       type: String,
-      enum: ["Ciencia", "Arte", "Tecnología"]
+      //enum: ["Reciclaje", "Arte", "Tecnología"]
     },
     authorId:{
       type: Schema.Types.ObjectId,
       ref:"User"
     },
-    studentId: {
-      type: Schema.Types.ObjectId,
-      ref:'User'
-    },
+    //studentId: {
+      //type: Schema.Types.ObjectId,
+      //ref:'User'
+    //},
     photoURL: {
       type: String, 
-      default: "https://miro.medium.com/max/1200/1*jVnqkmLgnIbuVlFYl5-T_Q.png"
-    },
-    description: String,
-    creditos: Number,
-    date: String,
+      default: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0Hpv_u7DBhhSDtI0MAaSPwdC_aowXhAEMw9R-MiMm9VUrxoTN"
+    }
+    //date: String,
   }
 );
 

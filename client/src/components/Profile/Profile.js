@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { MyContext } from '../../context'
 import UserData from './UserData/UserData'
+import GetProjects from '../GetProjects/GetProjects'
 
 export default function Profile(props) {
   return (
@@ -11,7 +12,7 @@ export default function Profile(props) {
           <div className="row">
             <UserData/>
             <div className="col">
-              2 of 2
+            <GetProjects/>
             </div>
             <div className="col">
               3 of 3

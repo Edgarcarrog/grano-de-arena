@@ -1,3 +1,4 @@
+import axios from "axios";
 
 const baseURL = 'http://localhost:3000'
 
@@ -8,16 +9,18 @@ const project = axios.create({
 
 const DataService = {
     createProject: data => {
-        return project.post("/createProject", data)
+        return project.post("/project", data)
     },
-    login: data => {
-        return service.post('/login', data)
+    getProject: user => {
+        const proj = project.get('/project', user)
+        console.log(user)
+        return proj
     },
     getUser: () => {
-        return service.get('/profile')
+        return project.get('/profile')
     },
     logout: () => {
-        return service.get('/logout')
+        return project.get('/logout')
     }
 }
 
