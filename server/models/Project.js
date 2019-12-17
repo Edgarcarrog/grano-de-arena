@@ -18,10 +18,10 @@ const projectSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref:"User"
     },
-    //studentId: {
-      //type: Schema.Types.ObjectId,
-      //ref:'User'
-    //},
+    activists: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     photoURL: {
       type: String, 
       default: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0Hpv_u7DBhhSDtI0MAaSPwdC_aowXhAEMw9R-MiMm9VUrxoTN"

@@ -10,7 +10,8 @@ const {
 const {
   createProject,
   getProjects,
-  allProjects
+  allProjects,
+  joinProject
 } = require('../controllers/data.controller')
 
 router.post('/signup', signup)
@@ -21,6 +22,7 @@ router.get('/logout', logout)
 router.post('/project', createProject)
 router.post('/myProjects', getProjects)
 router.post('/allProjects', allProjects)
+router.post('/joinProject', joinProject)
 //router.get('/project/:id', getMyProjects)
 
 module.exports = router

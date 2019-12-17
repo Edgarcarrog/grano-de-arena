@@ -65,8 +65,16 @@ class MyProvider extends Component {
   allProjects = async () => {
     const {data: {projects}} = await DataService.allProjects(this.state.user)
     const allProjects = projects
-    //console.log(projects)
+    console.log(allProjects)
     this.setState({...this.state, allProjects})
+  }
+
+  joinProject = async () => {
+    await DataService.joinProject(this.state.projectForm)
+    Swal.fire('Te uniste al proyecto')
+    //const allProjects = projects
+    //console.log(projects)
+    //this.setState({...this.state, allProjects})
   }
 
   handleInput = (e, obj) => {

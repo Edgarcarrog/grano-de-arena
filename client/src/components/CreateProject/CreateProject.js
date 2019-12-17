@@ -67,11 +67,8 @@ export default function CreateProject(props) {
                 </Form>
             </div>
             )}
-
         </MyContext.Consumer>
-
     )
-
 }
 
 

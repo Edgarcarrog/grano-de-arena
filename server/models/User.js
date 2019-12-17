@@ -18,11 +18,7 @@ const userSchema = new Schema(
     photoURL: {
       type: String,
       default: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSAzg3kZqBWHn43X0jUVFFazBc4vtMzWufZAUOmqq3cmkNee9I5"
-    },
-    projects: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Project'
-    }]
+    }
   },
   {
     timestamps: true,

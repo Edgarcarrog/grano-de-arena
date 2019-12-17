@@ -27,8 +27,7 @@ app.use(
     credentials: true,
     origin: [
       'http://localhost:3000',
-      'http://localhost:3001',
-      'https://polloyon.netlify.com'
+      'http://localhost:3001'
     ]
   })
 )

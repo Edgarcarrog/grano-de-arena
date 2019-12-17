@@ -18,8 +18,8 @@ const DataService = {
     allProjects: user => {
         return project.post('/allProjects', user)  
     },
-    logout: () => {
-        return project.get('/logout')
+    joinProject: user => {
+        return project.post('/joinProject', user)  
     }
 }
 
