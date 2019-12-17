@@ -20,8 +20,13 @@ exports.createProject = async (req, res) => {
 }
 
 exports.getProjects = async(req, res) => {
-  const projects = await Project.find();
+  const { _id } = req.body;
+  const projects = await Project.find({authorId:_id});
   res.status(200).json({projects});
-  // const { _id } = await req.body.user;
-  //const projects = await Project.find({authorId:_id});
+}
+
+exports.allProjects = async(req, res) => {
+  const { _id } = req.body;
+  const projects = await Project.find({authorId:{$ne: _id}});
+  res.status(200).json({projects});
 }

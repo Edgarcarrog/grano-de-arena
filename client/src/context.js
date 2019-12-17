@@ -24,7 +24,8 @@ class MyProvider extends Component {
       authorId: ""
     },
     user: {},
-    projects: []
+    projects: [],
+    allProjects: []
   }
 
   componentDidMount() {
@@ -37,8 +38,10 @@ class MyProvider extends Component {
             projectForm:{authorId: data.user._id} 
           })
           this.viewProjects().then(()=>{
-          //console.log(this.state)
           })
+          this.allProjects().then(()=>{
+            //console.log(this.state)
+            })
             //console.log(this.state.projects)
           //Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
         })
@@ -57,6 +60,13 @@ class MyProvider extends Component {
     const {data: {projects}} = await DataService.getProject(this.state.user)
     //console.log(projects)
     this.setState({...this.state, projects})
+  }
+
+  allProjects = async () => {
+    const {data: {projects}} = await DataService.allProjects(this.state.user)
+    const allProjects = projects
+    //console.log(projects)
+    this.setState({...this.state, allProjects})
   }
 
   handleInput = (e, obj) => {
@@ -117,7 +127,8 @@ class MyProvider extends Component {
           handleProject: this.handleProject,
           projectForm: this.state.projectForm,
           viewProjects: this.viewProjects,
-          projects: this.state.projects
+          projects: this.state.projects,
+          allProjects: this.state.allProjects
         }}
       >
         {this.props.children}

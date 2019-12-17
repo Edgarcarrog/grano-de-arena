@@ -12,12 +12,11 @@ const DataService = {
         return project.post("/project", data)
     },
     getProject: user => {
-        const proj = project.get('/project', user)
-        console.log(user)
-        return proj
+        return project.post('/myProjects', user)
+        
     },
-    getUser: () => {
-        return project.get('/profile')
+    allProjects: user => {
+        return project.post('/allProjects', user)  
     },
     logout: () => {
         return project.get('/logout')

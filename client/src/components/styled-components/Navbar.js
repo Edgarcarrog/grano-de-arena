@@ -41,6 +41,11 @@ function Navbar(props) {
               </NavLink>
             )}
             {context.loggedUser && (
+              <NavLink exact to="/allProjects" activeClassName="navbar-active">
+                Proyectos
+              </NavLink>
+            )}
+            {context.loggedUser && (
               <span
                 onClick={() =>
                   context.handleLogout(() => {
@@ -48,6 +53,7 @@ function Navbar(props) {
                   })
                 }
               >
+                
                 <NavLink exact to="/" activeClassName="navbar-active">
                   Logout
                 </NavLink>

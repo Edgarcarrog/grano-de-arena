@@ -15,7 +15,7 @@ export default function Profile(props) {
             <GetProjects/>
             </div>
             <div className="col">
-              3 of 3
+              
             </div>
           </div>
         </div>
