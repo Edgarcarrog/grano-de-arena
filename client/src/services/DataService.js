@@ -13,13 +13,15 @@ const DataService = {
     },
     getProject: user => {
         return project.post('/myProjects', user)
-        
     },
     allProjects: user => {
         return project.post('/allProjects', user)  
     },
-    joinProject: user => {
-        return project.post('/joinProject', user)  
+    joinProject: data => {
+        return project.post('/joinProject', data)  
+    },
+    joinedProjects: data => {
+        return project.post('/joinedProjects', data)  
     }
 }
 

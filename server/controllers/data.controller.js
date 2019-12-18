@@ -26,12 +26,24 @@ exports.getProjects = async(req, res) => {
 
 exports.allProjects = async(req, res) => {
   const { _id } = req.body;
-  const projects = await Project.find({authorId:{$ne: _id}}).populate("authorId");
+  const projects = await Project.find({ $and: [ {authorId:{$ne: _id}}, { activists: {$ne: _id}} ]}).populate("authorId");
   res.status(200).json({projects});
 }
 
 exports.joinProject = async(req, res) => {
+  const {id} = req.body;
+  const { _id } = req.user;
+
+  const project = await Project.findByIdAndUpdate(
+    id, {$push: {"activists": _id}},
+    req.body._id = ""
+  ).catch(err => res.status(500).json({ err }))
+  return res.status(201).json({ project })
+}
+
+exports.joinedProjects = async(req, res) => {
   const { _id } = req.body;
-  const projects = await Project.find({authorId:{$ne: _id}});
+  const projects = await Project.find( { activists: _id } );
   res.status(200).json({projects});
 }
+

@@ -25,6 +25,7 @@ class MyProvider extends Component {
     },
     user: {},
     projects: [],
+    myJoinedProjects: [],
     allProjects: []
   }
 
@@ -35,13 +36,16 @@ class MyProvider extends Component {
           this.setState({ 
             loggedUser: true, 
             user: data.user,
-            projectForm:{authorId: data.user._id} 
+            projectForm:{...this.state.projectForm, authorId: data.user._id} 
           })
           this.viewProjects().then(()=>{
           })
           this.allProjects().then(()=>{
             //console.log(this.state)
-            })
+          })
+          this.joinedProjects().then(()=>{
+              //console.log(this.state)
+          })
             //console.log(this.state.projects)
           //Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
         })
@@ -54,12 +58,14 @@ class MyProvider extends Component {
     await DataService.createProject(this.state.projectForm)
     this.setState({ projectForm: { title: "", description: "", category: "Campaña Ecológica"}})
     Swal.fire('Proyecto creado')
+    this.viewProjects().then(()=>{
+    })
   }
 
   viewProjects = async () => {
     const {data: {projects}} = await DataService.getProject(this.state.user)
-    //console.log(projects)
     this.setState({...this.state, projects})
+    this.state.allProjects = []
   }
 
   allProjects = async () => {
@@ -69,12 +75,17 @@ class MyProvider extends Component {
     this.setState({...this.state, allProjects})
   }
 
-  joinProject = async () => {
-    await DataService.joinProject(this.state.projectForm)
+  joinedProjects = async () => {
+    const {data: {projects}} = await DataService.joinedProjects(this.state.user)
+    const myJoinedProjects = projects
+    console.log(myJoinedProjects)
+    this.setState({...this.state, myJoinedProjects})
+  }
+
+  joinProject = async (e, id) => {
+    e.preventDefault()
+    await DataService.joinProject({id})
     Swal.fire('Te uniste al proyecto')
-    //const allProjects = projects
-    //console.log(projects)
-    //this.setState({...this.state, allProjects})
   }
 
   handleInput = (e, obj) => {
@@ -126,17 +137,20 @@ class MyProvider extends Component {
           loggedUser: this.state.loggedUser,
           formSignup: this.state.formSignup,
           loginForm: this.state.loginForm,
+          allProjects: this.state.allProjects,
+          myJoinedProjects: this.state.myJoinedProjects,
+          projectForm: this.state.projectForm,
+          projects: this.state.projects,
+          user: this.state.user,
           handleInput: this.handleInput,
           handleSignup: this.handleSignup,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
           handleSelect: this.handleSelect,
-          user: this.state.user,
           handleProject: this.handleProject,
-          projectForm: this.state.projectForm,
           viewProjects: this.viewProjects,
-          projects: this.state.projects,
-          allProjects: this.state.allProjects
+          joinProject: this.joinProject,
+          joinedProjects: this.joinedProjects
         }}
       >
         {this.props.children}
