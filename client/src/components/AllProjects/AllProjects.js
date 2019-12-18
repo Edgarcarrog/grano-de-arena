@@ -11,7 +11,8 @@ const StyledProjects = styled.nav`
 .form{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space around;
+    justify-content: space-around;
+    align-items: center;
 }
 `
 
@@ -20,7 +21,7 @@ export default function AllProjects(props) {
         <MyContext.Consumer>
             {context => (
                 <StyledProjects>
-                    <h1>Proyectos disponibles</h1>
+                    <h2>Proyectos disponibles</h2>
                 <div className="form">
                     
                     {context.allProjects.map((project, i) => {

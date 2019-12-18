@@ -8,6 +8,7 @@ import Home from './components/Home/Home'
 import CreateProject from './components/CreateProject/CreateProject'
 import AllProjects from './components/AllProjects/AllProjects'
 
+
 function Routes() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function Routes() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/createProject" component={CreateProject} />
         <Route exact path="/allProjects" component={AllProjects} />
+
       </Switch>
     </BrowserRouter>
   )

@@ -103,7 +103,6 @@ class MyProvider extends Component {
     //console.log(obj)
   }
 
-
   handleSignup = async e => {
     e.preventDefault()
     const { data } = await AUTH_SERVICE.signup(this.state.formSignup)

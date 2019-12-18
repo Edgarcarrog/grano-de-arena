@@ -11,7 +11,7 @@ export default function UserData(props) {
         <MyContext.Consumer>
             {context => (
                 <div className="col">
-                    <h1>Perfil</h1>
+                    <h2>Perfil</h2>
                     <Card
                         hoverable
                         style={{ width: 240 }}

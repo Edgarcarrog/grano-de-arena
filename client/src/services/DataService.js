@@ -22,6 +22,9 @@ const DataService = {
     },
     joinedProjects: data => {
         return project.post('/joinedProjects', data)  
+    },
+    createComment: data => {
+        return project.post("/comment", data)
     }
 }
 
