@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = 'http://localhost:3000'
+const baseURL = 'https://gentle-wave-17626.herokuapp.com/'
 
 const project = axios.create({
     baseURL,
