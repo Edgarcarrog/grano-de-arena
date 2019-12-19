@@ -1,12 +1,8 @@
 import React from "react";
 import { Form, Card, Button } from 'antd'
 import styled from 'styled-components'
-//import { Form, Input, Button, Select } from 'antd'
-import 'bootstrap/dist/css/bootstrap.css'
-//import DataService from '../../services/DataService'
 import { MyContext } from '../../context'
 const { Meta } = Card
-//import { FormAddProject }  from "../../components/styled-components/components"
 const StyledProjects = styled.nav`
 .form{
     display: flex;
@@ -38,6 +34,7 @@ export default function AllProjects(props) {
                                 description={project.description}
                                 key={i} />
                                 <p>Organizador: {project.authorId.name}</p>
+                                <p>Contacto: {project.authorId.email}</p>
                                 <div className="form">
                                     <Form onSubmit={(e) => {
                                         context.joinProject(e, id)

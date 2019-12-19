@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile'
 import Home from './components/Home/Home'
 import CreateProject from './components/CreateProject/CreateProject'
 import AllProjects from './components/AllProjects/AllProjects'
-
+import CommentInput from './components/CommentInput/CommentInput'
 
 function Routes() {
   return (
@@ -20,6 +20,7 @@ function Routes() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/createProject" component={CreateProject} />
         <Route exact path="/allProjects" component={AllProjects} />
+        <Route exact path="/commentInput" component={CommentInput} />
 
       </Switch>
     </BrowserRouter>

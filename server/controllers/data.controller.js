@@ -1,7 +1,5 @@
 const Project = require("../models/Project");
-//const User = require("../models/User")
-
-//crear proyecto
+const Comment = require("../models/Comment")
 
 exports.createProject = async (req, res) => {
   const { title, description, category, authorId } = req.body;
@@ -16,6 +14,19 @@ exports.createProject = async (req, res) => {
   req.body._id = ""
   ).catch(err => res.status(500).json({ err }))
   return res.status(201).json({ project })
+}
+
+exports.createComment = async (req, res) => {
+  const { description, rate, authorId} = req.body;
+
+  const comment = await Comment.create(
+    {
+      description,
+      rate,
+      authorId: authorId
+    },
+  ).catch(err => res.status(500).json({ err }))
+  return res.status(201).json({ comment })
 }
 
 exports.getProjects = async(req, res) => {
@@ -46,4 +57,6 @@ exports.joinedProjects = async(req, res) => {
   const projects = await Project.find( { activists: _id } );
   res.status(200).json({projects});
 }
+
+
 

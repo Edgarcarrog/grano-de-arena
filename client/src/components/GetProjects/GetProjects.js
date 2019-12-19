@@ -15,7 +15,7 @@ export default function GetProjects(props) {
                         return (
                             <Card
                                 hoverable
-                                style={{ width: 240 }}
+                                style={{ width: 240, margin: 20 }}
                                 cover={<img alt="photoProfile" src={project.photoURL} key={i} />}
                             >
                                 <Meta title={project.title} description={project.description} key={i} />

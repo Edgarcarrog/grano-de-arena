@@ -23,6 +23,11 @@ class MyProvider extends Component {
       category: "Campaña Ecológica",
       authorId: ""
     },
+    commentForm:{
+      description: "",
+      rate: 5,
+      authorId: ""
+    },
     user: {},
     projects: [],
     myJoinedProjects: [],
@@ -36,18 +41,15 @@ class MyProvider extends Component {
           this.setState({ 
             loggedUser: true, 
             user: data.user,
-            projectForm:{...this.state.projectForm, authorId: data.user._id} 
+            projectForm:{...this.state.projectForm, authorId: data.user._id},
+            commentForm:{...this.state.commentForm, authorId: data.user._id} 
           })
           this.viewProjects().then(()=>{
           })
           this.allProjects().then(()=>{
-            //console.log(this.state)
           })
           this.joinedProjects().then(()=>{
-              //console.log(this.state)
           })
-            //console.log(this.state.projects)
-          //Swal.fire(`Welcome back ${data.user.name} `, '', 'success')
         })
         .catch(err => console.log(err))
     }
@@ -58,6 +60,15 @@ class MyProvider extends Component {
     await DataService.createProject(this.state.projectForm)
     this.setState({ projectForm: { title: "", description: "", category: "Campaña Ecológica"}})
     Swal.fire('Proyecto creado')
+    this.viewProjects().then(()=>{
+    })
+  }
+
+  createComment = async e => {
+    e.preventDefault()
+    await DataService.createComment(this.state.commentForm)
+    this.setState({ commentForm: { description: ""}})
+    Swal.fire('Comentario creado')
     this.viewProjects().then(()=>{
     })
   }
@@ -85,6 +96,8 @@ class MyProvider extends Component {
   joinProject = async (e, id) => {
     e.preventDefault()
     await DataService.joinProject({id})
+    this.joinedProjects().then(()=>{
+    })
     Swal.fire('Te uniste al proyecto')
   }
 
@@ -114,6 +127,12 @@ class MyProvider extends Component {
     AUTH_SERVICE.login(this.state.loginForm)
       .then(({ data }) => {
         this.setState({ loggedUser: true, user: data.user })
+        this.viewProjects().then(()=>{
+        })
+        this.allProjects().then(()=>{
+        })
+        this.joinedProjects().then(()=>{
+        })
         cb()
       })
       .catch(err => {
@@ -149,7 +168,9 @@ class MyProvider extends Component {
           handleProject: this.handleProject,
           viewProjects: this.viewProjects,
           joinProject: this.joinProject,
-          joinedProjects: this.joinedProjects
+          joinedProjects: this.joinedProjects,
+          createComment: this.createComment,
+          commentForm: this.state.commentForm
         }}
       >
         {this.props.children}

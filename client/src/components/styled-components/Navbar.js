@@ -29,15 +29,24 @@ function Navbar(props) {
       {context => {
         return (
           <StyledNavbar>
-            <NavLink exact to="/" activeClassName="navbar-active">
+            {!context.loggedUser && (
+              <NavLink exact to="/" activeClassName="navbar-active">
               Home
             </NavLink>
-            <NavLink exact to="/signup" activeClassName="navbar-active">
+            )}
+            {!context.loggedUser && (
+              <NavLink exact to="/signup" activeClassName="navbar-active">
               Signup
             </NavLink>
+            )}
             {!context.loggedUser && (
               <NavLink exact to="/login" activeClassName="navbar-active">
                 Login
+              </NavLink>
+            )}
+            {context.loggedUser && (
+              <NavLink exact to="/profile" activeClassName="navbar-active">
+                Perfil
               </NavLink>
             )}
             {context.loggedUser && (
